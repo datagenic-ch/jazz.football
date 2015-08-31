@@ -1,0 +1,112 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add Prediction</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li class="active">
+                <strong>Add Prediction</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="predictionCtrl as ctrl">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Prediction</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Game</label>
+                                <select ng-options="game.name for game in ctrl.games" class="form-control" ng-model="ctrl.game" ng-change="ctrl.selectGame()" required></select>
+                                <div ng-if="ctrl.game.name">
+                                    <label>Type:</label>
+                                    {{ctrl.game.type}}<br/>
+                                    <em class="text-primary">{{ctrl.game.description}}</em>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label>Fixtures</label>-->
+                                <!--<select ng-options="'Week '+fixture.week for fixture in ctrl.fixtures" class="form-control" ng-model="ctrl.fixture" required></select>-->
+                            <!--</div>-->
+                            <div ng-if="ctrl.game.type === 'Last Man Standing'">
+                                <div class="form-group" >
+                                    <label>Select Team</label>
+                                    <select ng-options="team.name for team in ctrl.teams" class="form-control" ng-model="ctrl.team" required></select>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" ng-click="ctrl.addPredictionLMS()"><strong>Save</strong></button>
+                                <p><span class="text-danger">{{ctrl.message}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4" ng-if="ctrl.fixture.week">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{ctrl.competition.name}} - Week {{ctrl.fixture.week}}</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Close Date:</label>
+                            {{ctrl.fixture.closeDate | date:'EEE dd MMM yyyy HH:mm'}}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Home</th>
+                                    <th>Away</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="match in ctrl.fixture.fixtures">
+                                    <td>{{match.home}}</td>
+                                    <td>{{match.away}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4" ng-if="ctrl.cards.length > 0">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Game Cards</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Team</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="card in ctrl.cards">
+                                    <td>{{card.week}}</td>
+                                    <td>{{card.team}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

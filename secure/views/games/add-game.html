@@ -1,0 +1,56 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add Game Information</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li class="active">
+                <strong>Add Game</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="GameCtrl as ctrl">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Game Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input id="name" placeholder="Enter Name" class="form-control" ng-model="ctrl.game.name">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input id="description" placeholder="Enter Description" class="form-control" ng-model="ctrl.game.description">
+                            </div>
+                            <div class="form-group">
+                                <label>Competition</label>
+                                <select id="competition" class="form-control" ng-model="ctrl.game.competition" required>
+                                    <option ng-repeat="comp in ctrl.gameCompetitions">{{comp}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select id="type" class="form-control" ng-model="ctrl.game.type" required>
+                                    <option ng-repeat="type in ctrl.gameTypes">{{type}}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" ng-click="ctrl.addGame()"><strong>Save</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
