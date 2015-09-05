@@ -42,3 +42,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.ppk
+
+# Authentication files
+config/auth.js
+config/auth-dev.js
