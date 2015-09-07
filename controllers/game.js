@@ -4,13 +4,16 @@ module.exports = function(controllers) {
     controllers.game = {
 
         addGame: function (req, res) {
+            userid = req.user._id.toString();
+
             var game = new Game();
             game.name = req.body.name;
             game.description = req.body.description;
-            game.competition = req.body.competition;
+            game.competition = req.body.competition.id.toString();
             game.type = req.body.type;
-            game.moderators.push(req.user._id);
-            game.players.push(req.user._id);
+            game.moderators.push(userid);
+            game.players.push({userId:userid,status:'active',points:0});
+            game.open = req.body.open || true;
             game.save(function (err) {
                 if (err)
                     res.json({error: err});

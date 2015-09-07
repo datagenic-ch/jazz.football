@@ -71,8 +71,8 @@ module.exports = function(passport, configAuth) {
         // pull in our app id and secret from our auth.js file
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL
-
+        callbackURL     : configAuth.facebookAuth.callbackURL,
+		enableProof: true
     },
 
     // facebook will send back the token and profile
